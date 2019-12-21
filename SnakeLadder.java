@@ -25,19 +25,26 @@ public class SnakeLadder {
                         {32,24}, {42,26}, {52,41}, {61,58}, {68,64},
                         {82,60}, {89,39}, {93,75}, {97,85}           
                          };
+        String p1CurrentSituation = "stillInHome";
+        String p2CurrentSituation = "stillInHome";
+        
         System.out.println("-----SNAKE-LADDER-GAME-----");
         
         //taking player names and setting them
         System.out.println("Enter Player 1 name : ");
-        Player p1 = new Player(in.nextLine(), 0);
+        Player p1 = new Player(in.nextLine(), 1);
         System.out.println("Enter Player 2 name : ");
-        Player p2 = new Player(in.nextLine(), 0);
+        Player p2 = new Player(in.nextLine(), 1);
         
         System.out.println("\n\n");
         
         while(p1.getCurrentPosition()<100 && p2.getCurrentPosition()<100)       
         {
-            p1.move(p1.getCurrentPosition());
+            p1.move(p1.getCurrentPosition(), p1CurrentSituation);
+            if(p1.getCurrentPosition()>1)
+            {
+                p1CurrentSituation = "outFromHome";
+            }
             for(int i=0; i<ladders.length; i++)
             {
                 if(p1.getCurrentPosition() == ladders[i][0])
@@ -56,7 +63,11 @@ public class SnakeLadder {
             }
             System.out.println("Current Position of p1 : "+p1.getCurrentPosition());       
             
-            p2.move(p2.getCurrentPosition());
+            p2.move(p2.getCurrentPosition(), p2CurrentSituation);
+            if(p2.getCurrentPosition()>1)
+            {
+                p2CurrentSituation = "outFromHome";
+            }
             for(int i=0; i<ladders.length; i++)
             {
                 if(p2.getCurrentPosition() == ladders[i][0])
