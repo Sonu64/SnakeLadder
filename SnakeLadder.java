@@ -38,13 +38,17 @@ public class SnakeLadder {
         
         System.out.println("\n\n");
         
+        //LOOP UNTIL ONE PLAYER GETS TO 100
         while(p1.getCurrentPosition()<100 && p2.getCurrentPosition()<100)       
         {
+            //MOVING PLAYER1
             p1.move(p1.getCurrentPosition(), p1CurrentSituation);
+            //IF PLAYER1 GETS OUT FROM HOME, CHANGE HIS/HER CURRENT SITUATION
             if(p1.getCurrentPosition()>1)
             {
                 p1CurrentSituation = "outFromHome";
             }
+            //CHECK FOR PLAYER1'S LADDERS, IF HE/SHE GETS ONE..CALL climbLadder()
             for(int i=0; i<ladders.length; i++)
             {
                 if(p1.getCurrentPosition() == ladders[i][0])
@@ -53,6 +57,7 @@ public class SnakeLadder {
                     p1.climbLadder(p1.getCurrentPosition(), ladders[i][1]);
                 }
             }
+            //CHECK FOR PLAYER1'S SNAKES, IF HE/SHE GETS ONE..CALL downViaSnake()
             for(int i=0; i<snakes.length;  i++)
             {
                 if(p1.getCurrentPosition() == snakes[i][0])
@@ -63,11 +68,18 @@ public class SnakeLadder {
             }
             System.out.println("Current Position of p1 : "+p1.getCurrentPosition());       
             
+            
+            
+            
+            
+            //MOVING PLAYER2
             p2.move(p2.getCurrentPosition(), p2CurrentSituation);
+            //IF PLAYER2 GETS OUT FROM HOME, CHANGE HIS/HER CURRENT SITUATION
             if(p2.getCurrentPosition()>1)
             {
                 p2CurrentSituation = "outFromHome";
             }
+            //CHECKING PLAYER2'S LADDERS, IF HE/SHE GETS ONE..CALL climbLadder()
             for(int i=0; i<ladders.length; i++)
             {
                 if(p2.getCurrentPosition() == ladders[i][0])
@@ -76,6 +88,7 @@ public class SnakeLadder {
                     p2.climbLadder(p2.getCurrentPosition(), ladders[i][1]);
                 }
             }
+            //CHECKING PLAYER2'S SNAKES, IF HE/SHE GETS ONE..CALL downViaSnake()
             for(int i=0; i<snakes.length;  i++)
             {
                 if(p2.getCurrentPosition() == snakes[i][0])
